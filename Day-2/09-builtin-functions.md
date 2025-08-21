@@ -134,5 +134,31 @@ output "joined_string" {
     thiru-1
     thiru-2
     thiru-3
+
+
+
+   12. merge function: return the values
+  example :maint.tf
+        resource"aws_instance" "firstcount"{
+                  ami = "put your OS"
+                  instancece_type = " put your ram"
+                  count            =   3
+        tags = merge{
+          Name = element{var.name,count.index}
+       },
+       var.tags
+   }
+  var.tf
+        variable "name"{
+          description = "creating instance as we provided."
+         type = list
+       }
+       variable "tags"{
+       }
+   teraform.tfvar
+     name = ["thiru", "arvind", "sunith"]
+     tags = {
+     enivornment = "dev"
+}
        
 These are just a few examples of the built-in functions available in Terraform. You can find more functions and detailed documentation in the official Terraform documentation, which is regularly updated to include new features and improvements
